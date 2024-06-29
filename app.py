@@ -28,14 +28,9 @@ def upload_file():
     if file:
         video_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
         file.save(video_path)
-        return redirect(url_for('convert', filename=file.filename))
 
-@app.route('/convert/<filename>', methods=['GET', 'POST'])
-def convert(filename):
-    if request.method == 'POST':
         screenshot_interval = float(request.form['interval'])
-        video_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        output_pdf = os.path.join(app.config['OUTPUT_FOLDER'], f"screenshots_{filename.split('.')[0]}.pdf")
+        output_pdf = os.path.join(app.config['OUTPUT_FOLDER'], f"screenshots_{file.filename.split('.')[0]}.pdf")
 
         try:
             video = VideoFileClip(video_path)
@@ -76,8 +71,6 @@ def convert(filename):
 
         c.save()
         return send_file(output_pdf, as_attachment=True)
-
-    return render_template('convert.html', filename=filename)
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
