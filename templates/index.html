@@ -4,13 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video to PDF Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Video to PDF Converter</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <label for="file">Select video file:</label>
-        <input type="file" id="file" name="file" accept="video/mp4" required>
-        <button type="submit">Upload</button>
-    </form>
+    <header>
+        <div class="logo">
+            SIGMA ELETRONICOS
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <h1>Video to PDF Converter</h1>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <label for="file">Select Video File:</label>
+                <input type="file" name="file" id="file" required>
+                <label for="interval">Screenshot Interval (seconds):</label>
+                <input type="number" name="interval" id="interval" required>
+                <button type="submit">Upload and Convert</button>
+            </form>
+        </div>
+    </main>
 </body>
 </html>
